@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="card-body">
+    <h3 class="card-status">{{ task.status }}</h3>
+    <h5 class="card-title">{{ task.title }}</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">{{ task.author }}</h6>
+    <p class="card-text">{{ task.content }}</p>
+    <p class="card-text">дата изменения: {{ task.updated_at }}</p>
+    <a href="/" class="card-link">На главную</a>
+</div>
+
+</body>
+</html>

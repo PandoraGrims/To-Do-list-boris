@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Task</title>
+</head>
+
+<body>
+<h1>Create new task</h1>
+
+<form action="/task/add/" method="post">
+    {% csrf_token %}
+    <label>Status:</label><br/>
+    <textarea name="status"></textarea><br/>
+    <label>Title:</label><br/>
+    <input type="text" name="title"/><br/>
+    <label>Description:</label><br/>
+    <textarea name="description"></textarea><br/>
+    <label>Data:</label><br/>
+    <input type="text" name="author"/><br/>
+    <br/>
+    <input type="submit" value="Send"/>
+</form>
+<a href="/">На главную</a>
+</body>
+</html>

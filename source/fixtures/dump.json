@@ -1,0 +1,79 @@
+[
+{
+  "model": "webapp.article",
+  "pk": 1,
+  "fields": {
+    "title": "lalalala",
+    "author": "Неизвестный",
+    "content": "контент1",
+    "created_at": "2023-06-16T13:43:12.287Z",
+    "updated_at": "2023-06-16T14:24:29.410Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 2,
+  "fields": {
+    "title": "Статья2",
+    "author": "Неизвестный",
+    "content": "мвквыатпвамивптвыф",
+    "created_at": "2023-06-16T13:47:57.274Z",
+    "updated_at": "2023-06-16T13:47:57.274Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 3,
+  "fields": {
+    "title": "статья3",
+    "author": "Кирилл",
+    "content": "мввмывмвфмвы",
+    "created_at": "2023-06-16T13:48:47.182Z",
+    "updated_at": "2023-06-16T13:48:47.182Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 4,
+  "fields": {
+    "title": "Тест",
+    "author": "Вася",
+    "content": "контентконтен",
+    "created_at": "2023-06-16T13:52:28.604Z",
+    "updated_at": "2023-06-16T13:52:28.604Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 5,
+  "fields": {
+    "title": "",
+    "author": "Неизвестный",
+    "content": "",
+    "created_at": "2023-06-16T14:21:46.924Z",
+    "updated_at": "2023-06-16T14:21:46.924Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 6,
+  "fields": {
+    "title": "Статья10",
+    "author": "Неизвестный",
+    "content": " vdsbvedfbfd",
+    "created_at": "2023-06-16T14:22:50.056Z",
+    "updated_at": "2023-06-16T14:22:50.056Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 8,
+  "fields": {
+    "title": "article",
+    "author": "kirill",
+    "content": "cvsdvdsvs",
+    "created_at": "2023-06-16T14:36:15.022Z",
+    "updated_at": "2023-06-16T14:36:15.022Z"
+  }
+}
+]
