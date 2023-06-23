@@ -1,35 +1,32 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
 
-from webapp.models import Task
+from webapp.models import Task, status_choices
 
 
 def task_list_view(request):
-    tasks = Task.objects.order_by("-updated_at")
+    tasks = Task.objects.order_by("-data_field")
     context = {"tasks": tasks}
     return render(request, "index.html", context)
 
 
 def task_create_view(request):
     if request.method == "GET":
-        return render(request, "create_task.html")
+        return render(request, "create_task.html", {"status_choices": status_choices})
     else:
-        Task.objects.create(
+        task = Task.objects.create(
             title=request.POST.get("title"),
             description=request.POST.get("description"),
-            author=request.POST.get("author")
+            detailed_description=request.POST.get("detailed_description"),
+            status=request.POST.get("status"),
+            data_field=request.POST.get("data_field"),
         )
-        return HttpResponseRedirect("/")
+
+        return redirect("task_view", pk=task.pk)
 
 
-def task_view(request):
-    task_id = request.GET.get("id")
-    task = Task.objects.get(id=task_id)
+def task_view(request, *args, pk, **kwargs):
+    task = Task.objects.get(id=pk)
     return render(request, "task.html", {"task": task})
 
 
-def delete_task(request):
-    task_id = request.GET.get("id")
-    task = Task.objects.get(Task, id=task_id)
-    task.delete()
-    return redirect('task_list')
+
