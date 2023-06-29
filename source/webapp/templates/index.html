@@ -1,24 +1,51 @@
 {% extends "base_html_my.html" %}
 {% block link %}
     <li class="nav-item">
-          <a class="nav-link" href="{% url "task_add" %}">Создание задачи</a>
-        </li>
+        <a class="nav-link" href="{% url "task_add" %}">Создание задачи</a>
+    </li>
 {% endblock %}
 
 {% block content %}
 
-    <h1>Task</h1>
-
-
-    <br>
-    {% for task in tasks %}
-        <div class="card text-bg-warning mb-3" style="width: 18rem;">
-            <div class="card-body">
-                <h3 class="card-status">{{ task.status }}</h3>
-                <h5 class="card-title">{{ task.title }}</h5>
-                <p class="card-text">{{ task.content }}</p>
-                <a href="{% url "task_view" task.pk %}" class="card-link">Детальный просмотр задачи</a>
+        <h1 class="head-our-works text-center pt-5 pb-5">Задачи</h1>
+        <div class="container text-center">
+            <div class="container-our-works pb-5">
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    {% for task in tasks %}
+                        <div class="col-xxl-4 col-lg-6 col-sm-12">
+                            <div class="card card-our-works h-100" style="border: 3px solid darkblue; background-color: darkcyan">
+                                <div class="card-body ">
+                                    <p class="card-text card-text-1 text-uppercase"
+                                       style="font-size: 36px;">{{ task.title }}</p>
+                                    <p class="card-text card-text-1 text-uppercase"
+                                       style="font-size: 24px;">{{ task.status }}</p>
+                                    <p class="card-text card-text-1 text-uppercase"
+                                       style="font-size: 24px; border-top: 3px solid darkblue; border-radius: 10%;">{{ task.description }}</p>
+                                </div>
+                                <a class="card-link pt-3 pb-3" href="{% url "task_view" task.pk %}"
+                                   style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">
+                                    <button type="submit"
+                                            class="btn btm-input btn-outline-warning btn-lg py-2  text-uppercase rounded-0">
+                                        Детальный просмотр задачи
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
-    {% endfor %}
+
+
+{#    <br>#}
+{#    {% for task in tasks %}#}
+{#        <div class="card text-bg-warning mb-3" style="width: 18rem;">#}
+{#            <div class="card-body">#}
+{#                <h3 class="card-status">{{ task.status }}</h3>#}
+{#                <h5 class="card-title">{{ task.title }}</h5>#}
+{#                <p class="card-text">{{ task.content }}</p>#}
+{#                <a href="{% url "task_view" task.pk %}" class="card-link">Детальный просмотр задачи</a>#}
+{#            </div>#}
+{#        </div>#}
+{#    {% endfor %}#}
 {% endblock %}
