@@ -2,44 +2,13 @@
 {% block title %}Создание задачи{% endblock %}
 
 {% block content %}
-    <h1 class="title_create_good pt-5 pb-4 text-center">Создать/Добавить новый товар</h1>
+    <h1 class="title_create_good pt-5 pb-4 text-center">Создание задачи</h1>
     <div class="d-flex justify-content-center">
         <div class="card mb-3 text-center "
              style="background-color: darkcyan; border: 3px solid darkblue; border-radius: 10%; width: 600px;">
             <div class="card-body">
-                <form action="/task/add/" method="post">
-                    {% csrf_token %}
-                    <label style="font-size: 40px">Status:</label><br/>
-                    <label>
-                        <select name="status" style="width: 300px; height: 50px; text-align: center; font-size: 30px; border: 2px solid olivedrab">
-                            {% for status in status_choices %}
-                                <option value="{{ status.0 }}">{{ status.1 }}</option>
-                            {% endfor %}
+                    {% include "task_form.html" with button_text="Создать" %}
 
-                        </select>
-                    </label><br/>
-
-                    <label style="font-size: 40px">Title:</label><br/>
-                    <label >
-                        <input type="text" name="title" style="width: 300px; height: 50px; border: 2px solid olivedrab"/>
-                    </label><br/>
-                    <label style="font-size: 40px">Description:</label><br/>
-                    <label >
-                        <textarea name="description" style="width: 300px; height: 50px; border: 2px solid olivedrab"></textarea>
-                    </label><br/>
-                    <label style="font-size: 40px">Detailed Description:</label><br/>
-                    <label>
-                        <textarea name="detailed_description" style="width: 300px; height: 50px; border: 2px solid olivedrab"></textarea>
-                    </label><br/>
-
-                    <label style="font-size: 40px">DeadLine:</label><br/>
-                    <label style="font-size: 40px">
-                        <input type="date" name="data_field" style="width: 300px; height: 50px; border: 2px solid olivedrab"/>
-                    </label><br/>
-
-                    <input type="submit" value="Send" style="font-size: 30px; width: 300px; background-color: darkmagenta; border: 2px solid olivedrab"/>
-
-                </form>
             </div>
         </div>
     </div>
