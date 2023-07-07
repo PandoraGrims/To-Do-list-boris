@@ -3,11 +3,44 @@ from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRe
 from webapp.form import TaskForm
 from webapp.models import Task, status_choices
 
+from django.views import View
+from django.views.generic import TemplateView
+
+
+class TaskListView(View):
+    def get(self, request, *args, **kwargs):
+        tasks = Task.objects.order_by("data_field")
+        context = {"tasks": tasks}
+        return render(request, "index.html", context)
+
 
 def task_list_view(request):
     tasks = Task.objects.order_by("-data_field")
     context = {"tasks": tasks}
     return render(request, "index.html", context)
+
+
+class ArticleCreateView(View):
+    def get(self, request, *args, **kwargs):
+        form = TaskForm()
+        print(form)
+        return render(request, "create_task.html", {"status_choices": status_choices, "form": form})
+
+    def post(self, request, *args, **kwargs):
+        form = TaskForm(data=request.POST)
+        if form.is_valid():
+            tags = form.cleaned_data.pop("tags")
+            task = Task.objects.create(title=form.cleaned_data.get("title"),
+                                          description=form.cleaned_data.get("description"),
+                                          detailed_description=form.cleaned_data.get("detailed_description"),
+                                          status=form.cleaned_data.get("status"),
+                                          data_field=form.cleaned_data.get("data_field")
+                                          )
+            task.tags.set(tags)
+            return redirect("task_view", pk=task.pk)
+        else:
+            print(form.errors)
+            return render(request, "create_article.html", {"form": form})
 
 
 def task_create_view(request):
