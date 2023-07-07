@@ -1,7 +1,5 @@
 from django.db import models
 
-status_choices = [('new', 'Новая'), ('in_progress', 'В процессе'), ('done', 'Сделано')]
-
 
 class AbstractModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
@@ -12,13 +10,11 @@ class AbstractModel(models.Model):
 
 
 class Task(models.Model):
-    status = models.CharField(max_length=50, null=False, blank=False, verbose_name="Статус", choices=status_choices,
-                              default=status_choices[0][0])
+    status = models.ForeignKey('webapp.Status', on_delete=models.CASCADE, related_name='statuses', blank=True)
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name="Название")
     detailed_description = models.TextField(max_length=2000, verbose_name="Подробное описание", null=True, blank=True,
                                             default=None)
-    type = models.ManyToManyField('webapp.Type', related_name='tasks', blank=True)
-    data_field = models.DateField(verbose_name="Дэдлайн", null=True, blank=True, default=None)
+    type = models.ForeignKey('webapp.Type', on_delete=models.CASCADE, related_name='tasks', blank=True)
 
     def __str__(self):
         return f"{self.pk} {self.title}"
