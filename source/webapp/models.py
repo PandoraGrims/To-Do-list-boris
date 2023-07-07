@@ -3,14 +3,22 @@ from django.db import models
 status_choices = [('new', 'Новая'), ('in_progress', 'В процессе'), ('done', 'Сделано')]
 
 
+class AbstractModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата изменения")
+
+    class Meta:
+        abstract = True
+
+
 class Task(models.Model):
     status = models.CharField(max_length=50, null=False, blank=False, verbose_name="Статус", choices=status_choices,
                               default=status_choices[0][0])
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name="Название")
-    description = models.TextField(max_length=1000, verbose_name="Описание")
     detailed_description = models.TextField(max_length=2000, verbose_name="Подробное описание", null=True, blank=True,
                                             default=None)
-    data_field = models.DateField(verbose_name="Дата создания", null=True, blank=True, default=None)
+    type = models.ManyToManyField('webapp.Type', related_name='tasks', blank=True)
+    data_field = models.DateField(verbose_name="Дэдлайн", null=True, blank=True, default=None)
 
     def __str__(self):
         return f"{self.pk} {self.title}"
@@ -19,3 +27,27 @@ class Task(models.Model):
         db_table = "tasks"
         verbose_name = "Задача"
         verbose_name_plural = "Задачи"
+
+
+class Type(AbstractModel):
+    type_name = models.CharField(max_length=50, null=False, blank=False, verbose_name='Тип')
+
+    def __str__(self):
+        return self.type_name
+
+    class Meta:
+        db_table = "types"
+        verbose_name = "Тип"
+        verbose_name_plural = "Типы"
+
+
+class Status(AbstractModel):
+    status_name = models.CharField(max_length=50, null=False, blank=False, verbose_name='Статус')
+
+    def __str__(self):
+        return self.status_name
+
+    class Meta:
+        db_table = "statuses"
+        verbose_name = "Статус"
+        verbose_name_plural = "Статусы"
