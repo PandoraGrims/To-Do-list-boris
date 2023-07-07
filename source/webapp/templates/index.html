@@ -6,47 +6,50 @@
 {% endblock %}
 
 {% block content %}
-
-        <h1 class="head-our-works text-center pt-5 pb-5">Задачи</h1>
-        <div class="container text-center">
-            <div class="container-our-works pb-5">
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    {% for task in tasks %}
-                        <div class="col-xxl-4 col-lg-6 col-sm-12">
-                            <div class="card card-our-works h-100" style="border: 3px solid darkblue; background-color: darkcyan">
-                                <div class="card-body ">
-                                    <p class="card-text card-text-1 text-uppercase"
-                                       style="font-size: 36px;">{{ task.title }}</p>
-                                    <p class="card-text card-text-1 text-uppercase"
-                                       style="font-size: 24px;">{{ task.status }}</p>
-                                    <p class="card-text card-text-1 text-uppercase"
-                                       style="font-size: 24px; border-top: 3px solid darkblue; border-radius: 10%;">{{ task.description }}</p>
-                                </div>
-                                <a class="card-link pt-3 pb-3" href="{% url "task_view" task.pk %}"
-                                   style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">
-                                    <button type="submit"
-                                            class="btn btm-input btn-outline-warning btn-lg py-2  text-uppercase rounded-0">
-                                        Детальный просмотр задачи
-                                    </button>
-                                </a>
-                                <a class="card-link pt-3 pb-3" href="{% url "task_update_view" task.pk %}"
-                                   style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">
-                                    <button type="submit"
-                                            class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">
-                                        Редактирование
-                                    </button>
-                                </a>
-                                <a class="card-link pt-3 pb-3" href="{% url "task_delete_view" task.pk  %}"
-                                   style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">
-                                    <button type="submit"
-                                            class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">
-                                        Удаление задачи
-                                    </button>
-                                </a>
+    <div class="title_head text-center pt-5 pb-5">
+        <h1 class="head-our-works" style="font-size: 80px">₮₳Ꮥ₭ȿ</h1>
+        <h2>╰────────╮• ✻ •╭────────╯</h2>
+    </div>
+    <div class="container text-center">
+        <div class="container-our-works pb-5">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                {% for task in tasks %}
+                    <div class="col-xxl-4 col-lg-6 col-sm-12">
+                        <div class="card card-our-works h-100"
+                             style="border: 3px solid darkblue; background-color: darkcyan">
+                            <div class="card-body ">
+                                <p class="card-text card-text-1 text-uppercase"
+                                   style="font-size: 36px;">{{ task.title }}</p>
+                                <p class="card-text card-text-1 text-uppercase"
+                                   style="font-size: 24px;">{{ task.status }}</p>
+                                <p class="card-text card-text-1 text-uppercase"
+                                   style="font-size: 24px; border-top: 3px solid darkblue; border-radius: 10%;">{{ task.description }}</p>
                             </div>
+                            <a class="card-link pt-3 pb-3" href="{% url "task_view" task.pk %}"
+                               style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">
+                                <button type="submit"
+                                        class="btn btm-input btn-outline-warning btn-lg py-2  text-uppercase rounded-0">
+                                    Детальный просмотр задачи
+                                </button>
+                            </a>
+                            <a class="card-link pt-3 pb-3" href="{% url "task_update_view" task.pk %}"
+                               style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">
+                                <button type="submit"
+                                        class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">
+                                    Редактирование
+                                </button>
+                            </a>
+                            <a class="card-link pt-3 pb-3" href="{% url "task_delete_view" task.pk %}"
+                               style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">
+                                <button type="submit"
+                                        class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">
+                                    Удаление задачи
+                                </button>
+                            </a>
                         </div>
-                    {% endfor %}
-                </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
+    </div>
 {% endblock %}
