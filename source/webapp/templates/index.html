@@ -23,7 +23,9 @@
                                 <p class="card-text card-text-1 text-uppercase"
                                    style="font-size: 24px;">{{ task.status }}</p>
                                 <p class="card-text card-text-1 text-uppercase"
-                                   style="font-size: 24px; border-top: 3px solid darkblue; border-radius: 10%;">{{ task.description }}</p>
+                                   style="font-size: 24px;">{{ task.type }}</p>
+                                <p class="card-text card-text-1 text-uppercase"
+                                   style="font-size: 24px; border-top: 3px solid darkblue; border-radius: 10%;">{{ task.detailed_description }}</p>
                             </div>
                             <a class="card-link pt-3 pb-3" href="{% url "task_view" task.pk %}"
                                style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">
