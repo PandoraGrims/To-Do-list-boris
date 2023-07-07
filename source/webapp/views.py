@@ -27,6 +27,8 @@ class TaskCreateView(View):
                                        detailed_description=form.cleaned_data.get("detailed_description"),
                                        status=form.cleaned_data.get("status"),
                                        type=form.cleaned_data.get("type"),
+                                       created_at=form.cleaned_data.get("created_at"),
+                                       updated_at=form.cleaned_data.get("updated_at")
                                        )
 
             return redirect("task_view", pk=task.pk)
