@@ -8,7 +8,7 @@ admin.site.register(Status)
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'status']
+    list_display = ['id', 'title']
     list_display_links = ['id', 'title']
     search_fields = ['title', 'detailed_description']
     fields = ['title', 'detailed_description', 'status', 'type']
