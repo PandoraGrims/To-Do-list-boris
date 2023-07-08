@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from webapp.form import TaskForm
-from webapp.models import Task
+from webapp.models import Task, Status, Type
 
 from django.views import View
 from django.views.generic import TemplateView
@@ -37,28 +37,6 @@ class TaskCreateView(View):
             return render(request, "create_task.html", {"form": form})
 
 
-def task_update_view(request, pk):
-    task = get_object_or_404(Task, id=pk)
-    if request.method == "GET":
-        form = TaskForm(initial={"title": task.title,
-                                 "status": task.status,
-                                 "description": task.description,
-                                 "detailed_description": task.detailed_description,
-                                 })
-        return render(request, "update_task.html", {"form": form})
-    else:
-        form = TaskForm(data=request.POST)
-        if form.is_valid():
-            task.status = request.POST.get("status")
-            task.title = request.POST.get("title")
-            task.description = request.POST.get("description")
-            task.detailed_description = request.POST.get("detailed_description")
-            task.save()
-            return redirect("task_view", pk=task.pk)
-        else:
-            return render(request, "update_task.html", {"form": form})
-
-
 class TaskDetailView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -67,6 +45,55 @@ class TaskDetailView(TemplateView):
 
     def get_template_names(self):
         return "task.html"
+
+
+# def task_update_view(request, pk):
+#     task = get_object_or_404(Task, id=pk)
+#     if request.method == "GET":
+#         form = TaskForm(initial={"title": task.title,
+#                                  "status": task.status,
+#                                  "description": task.description,
+#                                  "detailed_description": task.detailed_description,
+#                                  })
+#         return render(request, "update_task.html", {"form": form})
+#     else:
+#         form = TaskForm(data=request.POST)
+#         if form.is_valid():
+#             task.status = request.POST.get("status")
+#             task.title = request.POST.get("title")
+#             task.description = request.POST.get("description")
+#             task.detailed_description = request.POST.get("detailed_description")
+#             task.save()
+#             return redirect("task_view", pk=task.pk)
+#         else:
+#             return render(request, "update_task.html", {"form": form})
+
+def task_update_view(request, pk):
+    task = get_object_or_404(Task, id=pk)
+    if request.method == "GET":
+        form = TaskForm(initial={"title": task.title,
+                                 "status": task.status,
+                                 "type": task.type,
+                                 "detailed_description": task.detailed_description,
+                                 })
+        return render(request, "update_task.html", {"form": form})
+    else:
+        form = TaskForm(data=request.POST)
+        if form.is_valid():
+            # type = form.cleaned_data.pop("type")
+            # status = form.cleaned_data.pop("status")
+            # task.status = form.cleaned_data.get("status")
+            task.title = form.cleaned_data.get("title")
+            task.content = form.cleaned_data.get("detailed_description")
+            task.author = form.cleaned_data.get("author")
+            type.type_name = form.cleaned_data.get("type")
+            status.status_name = form.cleaned_data.get("status")
+            task.save()
+            # task.type.set(type)
+            # task.status.set(status)
+            return redirect("task_view", pk=task.pk)
+        else:
+            return render(request, "update_task.html", {"form": form})
 
 
 def task_delete_view(request, pk):
