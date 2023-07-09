@@ -1,5 +1,5 @@
 from django.urls import path
-from django.views.generic import RedirectView
+
 
 from webapp.views import TaskListView, task_update_view, TaskCreateView, TaskDetailView, task_delete_view
 
