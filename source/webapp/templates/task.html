@@ -22,12 +22,16 @@
                     <h1 class="card-title" style="border-bottom: 2px solid darkblue; border-radius: 10px">
                         Название: {{ task.title }}</h1>
                     <p class="card-text" style="font-size: 26px;">Статус: {{ task.status }}</p>
-                    <p class="card-text" style="font-size: 26px;">Тип: {{ task.type }}</p>
+                    {% for type in task.type.all %}
+                        <p class="card-text card-text-1 text-uppercase"
+                           style="font-size: 24px;">Тип: {{ type.type_name }}</p>
+                    {% endfor %}
                     <p class="card-text" style="font-size: 26px;">Подробное
                         описание: {{ task.detailed_description }}</p>
                     <p class="card-text"><small class="text-body-secondary">Дата Создания: {{ task.created_at }}</small>
                     </p>
-                    <p class="card-text"><small class="text-body-secondary">Дата Обновления: {{ task.updated_at }}</small>
+                    <p class="card-text"><small class="text-body-secondary">Дата
+                        Обновления: {{ task.updated_at }}</small>
                     </p>
                     <a class="card-link pt-3 pt-4 pb-3" href="{% url "task_update_view" task.pk %}"
                        style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">

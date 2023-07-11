@@ -21,9 +21,11 @@
                                 <p class="card-text card-text-1 text-uppercase"
                                    style="font-size: 36px;">{{ task.title }}</p>
                                 <p class="card-text card-text-1 text-uppercase"
-                                   style="font-size: 24px;">{{ task.status }}</p>
+                                   style="font-size: 24px;">Статус: {{ task.status }}</p>
+                                {% for type in task.type.all %}
                                 <p class="card-text card-text-1 text-uppercase"
-                                   style="font-size: 24px;">{{ task.type }}</p>
+                                   style="font-size: 24px;">Тип: {{ type.type_name }}</p>
+                                {% endfor %}
                                 <p class="card-text card-text-1 text-uppercase"
                                    style="font-size: 24px; border-top: 3px solid darkblue; border-radius: 10%;">{{ task.detailed_description }}</p>
                                 <p class="card-text card-text-1 text-uppercase"

@@ -23,7 +23,7 @@ class TaskCreateView(View):
         form = TaskForm(data=request.POST)
         if form.is_valid():
 
-            types = form.cleaned_data.pop("types")
+            types = form.cleaned_data.pop("type")
 
             task = Task.objects.create(title=form.cleaned_data.get("title"),
                                        detailed_description=form.cleaned_data.get("detailed_description"),
