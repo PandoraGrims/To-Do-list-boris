@@ -30,7 +30,8 @@ class Task(models.Model):
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name="Название")
     detailed_description = models.TextField(max_length=2000, verbose_name="Подробное описание", null=True, blank=True,
                                             default=None)
-    type = models.ForeignKey('webapp.Type', on_delete=models.CASCADE, related_name='types', blank=True)
+    type = models.ManyToManyField('webapp.Type', related_name='tasks', through='webapp.TaskType',
+                                  through_fields=('task', 'type'), blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата изменения")
 
@@ -41,3 +42,12 @@ class Task(models.Model):
         db_table = "tasks"
         verbose_name = "Задача"
         verbose_name_plural = "Задачи"
+
+
+class TaskType(models.Model):
+    task = models.ForeignKey('webapp.Task', related_name='task_types', on_delete=models.CASCADE,
+                             verbose_name='Задача')
+    type = models.ForeignKey('webapp.Type', related_name='type_tasks', on_delete=models.CASCADE, verbose_name='Тип')
+
+    def __str__(self):
+        return "{} | {}".format(self.task, self.type)

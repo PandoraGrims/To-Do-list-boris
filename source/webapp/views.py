@@ -9,31 +9,31 @@ from django.views.generic import TemplateView
 
 class TaskListView(View):
     def get(self, request, *args, **kwargs):
-        tasks = Task.objects.order_by("-status")
+        tasks = Task.objects.order_by("-updated_at")
         context = {"tasks": tasks}
         return render(request, "index.html", context)
 
 
 class TaskCreateView(View):
     def get(self, request, *args, **kwargs):
-        form = TaskForm(data=request.POST)
-        print(form)
+        form = TaskForm()
         return render(request, "create_task.html", {"form": form})
 
     def post(self, request, *args, **kwargs):
         form = TaskForm(data=request.POST)
         if form.is_valid():
+
+            types = form.cleaned_data.pop("types")
+
             task = Task.objects.create(title=form.cleaned_data.get("title"),
                                        detailed_description=form.cleaned_data.get("detailed_description"),
                                        status=form.cleaned_data.get("status"),
-                                       type=form.cleaned_data.get("type"),
                                        created_at=form.cleaned_data.get("created_at"),
                                        updated_at=form.cleaned_data.get("updated_at")
                                        )
-
+            task.type.set(types)
             return redirect("task_view", pk=task.pk)
         else:
-            print(form.errors)
             return render(request, "create_task.html", {"form": form})
 
 
@@ -52,20 +52,20 @@ def task_update_view(request, pk):
     if request.method == "GET":
         form = TaskForm(initial={"title": task.title,
                                  "status": task.status,
-                                 "type": task.type,
+                                 "types": task.type.all(),
                                  "detailed_description": task.detailed_description,
                                  })
         return render(request, "update_task.html", {"form": form})
     else:
         form = TaskForm(data=request.POST)
         if form.is_valid():
-
+            types = form.cleaned_data.pop("type")
             task.title = form.cleaned_data.get("title")
             task.content = form.cleaned_data.get("detailed_description")
             task.author = form.cleaned_data.get("author")
-            task.type = form.cleaned_data.get("type")
             task.status = form.cleaned_data.get("status")
             task.save()
+            task.type.set(types)
             return redirect("task_view", pk=task.pk)
         else:
             return render(request, "update_task.html", {"form": form})
