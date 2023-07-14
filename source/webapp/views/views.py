@@ -11,13 +11,13 @@ class TaskListView(View):
     def get(self, request, *args, **kwargs):
         tasks = Task.objects.order_by("-updated_at")
         context = {"tasks": tasks}
-        return render(request, "index.html", context)
+        return render(request, "task/index.html", context)
 
 
 class TaskCreateView(View):
     def get(self, request, *args, **kwargs):
         form = TaskForm()
-        return render(request, "create_task.html", {"form": form})
+        return render(request, "task/create_task.html", {"form": form})
 
     def post(self, request, *args, **kwargs):
         form = TaskForm(data=request.POST)
@@ -34,7 +34,7 @@ class TaskCreateView(View):
             task.type.set(types)
             return redirect("task_view", pk=task.pk)
         else:
-            return render(request, "create_task.html", {"form": form})
+            return render(request, "task/create_task.html", {"form": form})
 
 
 class TaskDetailView(TemplateView):
@@ -44,7 +44,7 @@ class TaskDetailView(TemplateView):
         return context
 
     def get_template_names(self):
-        return "task.html"
+        return "task/task.html"
 
 
 def task_update_view(request, pk):
@@ -55,7 +55,7 @@ def task_update_view(request, pk):
                                  "types": task.type.all(),
                                  "detailed_description": task.detailed_description,
                                  })
-        return render(request, "update_task.html", {"form": form})
+        return render(request, "task/update_task.html", {"form": form})
     else:
         form = TaskForm(data=request.POST)
         if form.is_valid():
@@ -68,13 +68,13 @@ def task_update_view(request, pk):
             task.type.set(types)
             return redirect("task_view", pk=task.pk)
         else:
-            return render(request, "update_task.html", {"form": form})
+            return render(request, "task/update_task.html", {"form": form})
 
 
 def task_delete_view(request, pk):
     task = get_object_or_404(Task, id=pk)
     if request.method == "GET":
-        return render(request, "delete_task.html", {"task": task})
+        return render(request, "task/delete_task.html", {"task": task})
     else:
         task.delete()
         return redirect("index")
