@@ -11,20 +11,23 @@ class TaskListView(ListView):
     model = Task
     template_name = "tasks/index.html"
     context_object_name = "tasks"
-    ordering = ("-updated_at", )
+    ordering = ("-updated_at",)
+    paginate_by = 5
+    # paginate_orphans =
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(title__contains="Задач")
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     return queryset.filter(title__contains="Задач")
 
     # def get(self, request, *args, **kwargs):
     #     tasks = Task.objects.order_by("-updated_at")
     #     context = {"tasks": tasks}
     #     return render(request, "tasks/index.html", context)
-    
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
         return context
+
 
 class TaskCreateView(View):
     def get(self, request, *args, **kwargs):
