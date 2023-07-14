@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RemoveField(
-            model_name='task',
+            model_name='tasks',
             name='type',
         ),
     ]

@@ -4,20 +4,32 @@ from webapp.form import TaskForm
 from webapp.models import Task
 
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
 
-class TaskListView(View):
-    def get(self, request, *args, **kwargs):
-        tasks = Task.objects.order_by("-updated_at")
-        context = {"tasks": tasks}
-        return render(request, "task/index.html", context)
+class TaskListView(ListView):
+    model = Task
+    template_name = "tasks/index.html"
+    context_object_name = "tasks"
+    ordering = ("-updated_at", )
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(title__contains="Задач")
+
+    # def get(self, request, *args, **kwargs):
+    #     tasks = Task.objects.order_by("-updated_at")
+    #     context = {"tasks": tasks}
+    #     return render(request, "tasks/index.html", context)
+    
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=None, **kwargs)
+        return context
 
 class TaskCreateView(View):
     def get(self, request, *args, **kwargs):
         form = TaskForm()
-        return render(request, "task/create_task.html", {"form": form})
+        return render(request, "tasks/create_task.html", {"form": form})
 
     def post(self, request, *args, **kwargs):
         form = TaskForm(data=request.POST)
@@ -34,17 +46,17 @@ class TaskCreateView(View):
             task.type.set(types)
             return redirect("task_view", pk=task.pk)
         else:
-            return render(request, "task/create_task.html", {"form": form})
+            return render(request, "tasks/create_task.html", {"form": form})
 
 
 class TaskDetailView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["task"] = get_object_or_404(Task, id=kwargs['pk'])
+        context["tasks"] = get_object_or_404(Task, id=kwargs['pk'])
         return context
 
     def get_template_names(self):
-        return "task/task.html"
+        return "tasks/tasks.html"
 
 
 def task_update_view(request, pk):
@@ -55,7 +67,7 @@ def task_update_view(request, pk):
                                  "types": task.type.all(),
                                  "detailed_description": task.detailed_description,
                                  })
-        return render(request, "task/update_task.html", {"form": form})
+        return render(request, "tasks/update_task.html", {"form": form})
     else:
         form = TaskForm(data=request.POST)
         if form.is_valid():
@@ -68,13 +80,13 @@ def task_update_view(request, pk):
             task.type.set(types)
             return redirect("task_view", pk=task.pk)
         else:
-            return render(request, "task/update_task.html", {"form": form})
+            return render(request, "tasks/update_task.html", {"form": form})
 
 
 def task_delete_view(request, pk):
     task = get_object_or_404(Task, id=pk)
     if request.method == "GET":
-        return render(request, "task/delete_task.html", {"task": task})
+        return render(request, "tasks/delete_task.html", {"tasks": task})
     else:
         task.delete()
         return redirect("index")

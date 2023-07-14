@@ -5,7 +5,6 @@ from django.forms import widgets
 from webapp.models import Type, Status, Task
 
 
-
 def validate_title(value):
     if len(value) < 4:
         raise ValidationError('Summary must be greater than four')
@@ -40,4 +39,3 @@ class TaskForm(forms.Form):
     class Meta:
         model = Task
         fields = ["title", "detailed_description", "status", "type"]
-
