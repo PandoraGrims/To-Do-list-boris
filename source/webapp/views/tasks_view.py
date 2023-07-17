@@ -41,8 +41,11 @@ class TaskListView(ListView):
         print(self.search_value)
         if self.search_value:
             queryset = queryset.filter(Q(title__icontains=self.search_value) |
-                                       Q(author__icontains=self.search_value))
-        return queryset
+                                       Q(detailed_description__icontains=self.search_value))
+
+            return queryset
+        else:
+            return queryset
 
 
 class TaskCreateView(View):
