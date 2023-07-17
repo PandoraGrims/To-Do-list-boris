@@ -5,7 +5,7 @@ from webapp.form import TaskForm, SearchForm
 from webapp.models import Task, Project
 
 from django.views import View
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 
 class ProjectListView(ListView):
     model = Project
@@ -20,6 +20,19 @@ class ProjectListView(ListView):
         if search_value:
             queryset = queryset.filter(Q(name__icontains=search_value) | Q(description__icontains=search_value))
         return queryset
+
+
+class ProjectDetailView(DetailView):
+    model = Project
+    template_name = 'project/project_detail_view.html'
+    context_object_name = 'project'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        project = self.get_object()
+        tasks = project.tasks.all()
+        context['tasks'] = tasks
+        return context
 
 
 class TaskListView(ListView):
