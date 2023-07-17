@@ -7,6 +7,22 @@ admin.site.register(Type)
 
 admin.site.register(Status)
 
+admin.site.register(Task)
+
+admin.site.register(Project)
+
+
+
+
+
+
+
+
+
+
+
+
+
 #
 # class TaskAdmin(admin.ModelAdmin):
 #     list_display = ['id', 'title']
@@ -15,7 +31,3 @@ admin.site.register(Status)
 #     fields = ['title', 'detailed_description', 'status', 'type']
 #     readonly_fields = ['created_at', 'updated_at']
 #
-
-admin.site.register(Task)
-
-admin.site.register(Project)

@@ -13,7 +13,7 @@ class TaskListView(ListView):
     template_name = "tasks/index.html"
     context_object_name = "tasks"
     ordering = ("-updated_at",)
-    paginate_by = 5
+    paginate_by = 3
 
     def dispatch(self, request, *args, **kwargs):
         self.form = self.get_search_form()
