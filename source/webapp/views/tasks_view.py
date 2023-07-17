@@ -2,10 +2,24 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from django.utils.html import urlencode
 from webapp.form import TaskForm, SearchForm
-from webapp.models import Task
+from webapp.models import Task, Project
 
 from django.views import View
 from django.views.generic import TemplateView, ListView
+
+class ProjectListView(ListView):
+    model = Project
+    template_name = 'project/project_list_view.html'
+    context_object_name = 'projects'
+    ordering = ("-start_date",)
+    paginate_by = 5
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_value = self.request.GET.get('search')
+        if search_value:
+            queryset = queryset.filter(Q(name__icontains=search_value) | Q(description__icontains=search_value))
+        return queryset
 
 
 class TaskListView(ListView):
