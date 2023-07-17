@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='tasks',
+            model_name='task',
             name='type',
             field=models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, related_name='types', to='webapp.type'),
         ),

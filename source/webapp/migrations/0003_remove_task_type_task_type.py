@@ -11,11 +11,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RemoveField(
-            model_name='tasks',
+            model_name='task',
             name='type',
         ),
         migrations.AddField(
-            model_name='tasks',
+            model_name='task',
             name='type',
             field=models.ManyToManyField(to='webapp.type'),
         ),

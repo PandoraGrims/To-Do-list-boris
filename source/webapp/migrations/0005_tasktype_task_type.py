@@ -15,12 +15,12 @@ class Migration(migrations.Migration):
             name='TaskType',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('tasks', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='task_types', to='webapp.tasks', verbose_name='Задача')),
+                ('task', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='task_types', to='webapp.task', verbose_name='Задача')),
                 ('type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='type_tasks', to='webapp.type', verbose_name='Тип')),
             ],
         ),
         migrations.AddField(
-            model_name='tasks',
+            model_name='task',
             name='type',
             field=models.ManyToManyField(blank=True, related_name='tasks', through='webapp.TaskType', to='webapp.type'),
         ),

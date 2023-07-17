@@ -31,7 +31,7 @@ class Task(models.Model):
     detailed_description = models.TextField(max_length=2000, verbose_name="Подробное описание", null=True, blank=True,
                                             default=None)
     type = models.ManyToManyField('webapp.Type', related_name='tasks', through='webapp.TaskType',
-                                  through_fields=('tasks', 'type'), blank=True)
+                                  through_fields=('task', 'type'), blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата изменения")
 
