@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import widgets
 
-from webapp.models import Type, Status, Task
+from webapp.models import Type, Status, Task, Project
 
 
 def validate_title(value):
@@ -43,3 +43,21 @@ class TaskForm(forms.Form):
 
 class SearchForm(forms.Form):
     search = forms.CharField(max_length=30, required=False, label="Найти")
+
+
+class ProjectForm(forms.ModelForm):
+    name = forms.CharField(max_length=50, required=True, label="Название")
+    description = forms.CharField(max_length=50, required=True, label="Подробное описание")
+    start_date = forms.DateField(required=True, label='Старт')
+    end_date = forms.DateField(required=False, label='Окончание')
+
+    def init(self, *args, **kwargs):
+        super().init(*args, **kwargs)
+
+        for v in self.visible_fields():
+            if not isinstance(v.field.widget, widgets.CheckboxSelectMultiple):
+                v.field.widget.attrs["class"] = "form-control"
+
+    class Meta:
+        model = Project
+        fields = ["name", "description", "start_date", "end_date"]
