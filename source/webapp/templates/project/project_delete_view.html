@@ -1,0 +1,28 @@
+{% extends "base_html_my.html" %}
+
+{% block content %}
+
+    <h3 class="head_text pt-5 pb-5" style="text-align: center">Вы уверены что хотите удалить
+        проект {{ project.title }}?</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="d-flex justify-content-center">
+            <div class="card mb-3 text-center "
+                 style="background-color: #ce1565; border: 3px solid darkblue; border-radius: 5%; width: 600px;">
+                <div class="card-body">
+                    <button type="submit" style="width: 300px; font-size: 30px"
+                            class="btn btm-input btn-primary btn-lg py-2 my-3 text-uppercase rounded-0"
+                            data-bs-dismiss="modal">
+                        Удалить
+                    </button>
+
+                    <div class="card-link pt-3 pt-4 pb-3"
+                         style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">
+                        <a href="{% url "index" %}" style="text-decoration: none; padding-left: 150px; padding-top: 10px; padding-bottom: 10px; padding-right: 150px;font-size: 35px; background-color: darkorange; border: 3px solid darkblue;">НЕТ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

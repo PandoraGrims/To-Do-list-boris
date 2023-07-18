@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.db.models import Q
+from django.urls import reverse_lazy
 from django.utils.html import urlencode
 from webapp.form import TaskForm, SearchForm, ProjectForm
 from webapp.models import Task, Project
 
 from django.views import View
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
 class ProjectListView(ListView):
@@ -43,6 +44,24 @@ class ProjectCreateView(CreateView):
 
     def get_success_url(self):
         return reverse("project_detail_view", kwargs={"pk": self.object.pk})
+
+
+class ProjectUpdateView(UpdateView):
+    model = Project
+    form_class = ProjectForm
+    template_name = "project/project_update_view.html"
+
+    def get_success_url(self):
+        return reverse("project_detail_view", kwargs={"pk": self.object.pk})
+
+
+class ProjectDeleteView(DeleteView):
+    model = Project
+    template_name = "project/project_delete_view.html"
+    success_url = reverse_lazy("index")
+
+    # def get(self, request, *args, **kwargs):
+    #     return self.delete(request, *args, **kwargs)
 
 
 class TaskListView(ListView):

@@ -39,20 +39,20 @@
                                                                 Заглянуть в проект
                                                             </button>
                                                         </a>
-                            {#                            <a class="card-link pt-3 pb-3" href="{% url "task_update_view" task.pk %}"#}
-                            {#                               style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">#}
-                            {#                                <button type="submit"#}
-                            {#                                        class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">#}
-                            {#                                    Редактирование#}
-                            {#                                </button>#}
-                            {#                            </a>#}
-                            {#                            <a class="card-link pt-3 pb-3" href="{% url "task_delete_view" task.pk %}"#}
-                            {#                               style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">#}
-                            {#                                <button type="submit"#}
-                            {#                                        class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">#}
-                            {#                                    Удаление задачи#}
-                            {#                                </button>#}
-                            {#                            </a>#}
+                                                        <a class="card-link pt-3 pb-3" href="{% url "project_update_view" project.pk %}"
+                                                           style="border-top: 3px solid darkblue;border-radius: 10%; background-color: #ce1565">
+                                                            <button type="submit"
+                                                                    class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">
+                                                                Редактирование
+                                                            </button>
+                                                        </a>
+                                                        <a class="card-link pt-3 pb-3" href="{% url "project_delete_view" project.pk %}"
+                                                           style="border-top: 3px solid darkblue;border-radius: 10%; background-color: #ce1565">
+                                                            <button type="submit"
+                                                                    class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">
+                                                                Удаление задачи
+                                                            </button>
+                                                        </a>
                         </div>
                     </div>
                 {% endfor %}

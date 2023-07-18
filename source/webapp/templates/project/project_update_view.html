@@ -1,0 +1,20 @@
+{% extends "base_html_my.html" %}
+{% block link %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "project_add" %}">Создание проекта</a>
+    </li>
+{% endblock %}
+{% block title %}Редактирование задачи{% endblock %}
+
+{% block content %}
+    <h1 class="title_create_good pt-5 pb-4 text-center">Редактирование Проекта</h1>
+    <div class="d-flex justify-content-center">
+        <div class="card mb-3 text-center "
+             style="background-color: #ce1565; border: 3px solid darkblue; border-radius: 10%; width: 600px;">
+            <div class="card-body">
+                    {% include "project_form.html" with button_text="Обновить" %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
