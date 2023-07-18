@@ -706,22 +706,72 @@
 },
 {
   "model": "webapp.project",
-  "pk": 1,
+  "pk": 8,
   "fields": {
-    "name": "}{ott@┌№iў",
-    "description": "Test of the admin project",
+    "name": "Pandora_Grims",
+    "description": "Doing your work",
     "start_date": "2023-07-18",
     "end_date": null
   }
 },
 {
   "model": "webapp.project",
-  "pk": 2,
+  "pk": 9,
   "fields": {
-    "name": "╧юїхЁ",
-    "description": "gfgfgfggf",
-    "start_date": "2023-07-18",
-    "end_date": "2023-07-18"
+    "name": "╧юЇшу",
+    "description": "hihi haha",
+    "start_date": "2023-07-19",
+    "end_date": null
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 10,
+  "fields": {
+    "name": "╒ottр▄Iў",
+    "description": "ShamanKing",
+    "start_date": "2023-05-14",
+    "end_date": "2023-10-18"
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 11,
+  "fields": {
+    "name": "ForeverJreck",
+    "description": "swamp chill",
+    "start_date": "2023-04-14",
+    "end_date": null
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 12,
+  "fields": {
+    "name": "RuhatLukumDus",
+    "description": "vkus znakomi s detstva",
+    "start_date": "2023-07-25",
+    "end_date": null
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 13,
+  "fields": {
+    "name": "MilanMulan",
+    "description": "Pobeda China",
+    "start_date": "2023-05-14",
+    "end_date": "2023-10-18"
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 14,
+  "fields": {
+    "name": "ValidVladValadart",
+    "description": "press f for project",
+    "start_date": "2023-10-11",
+    "end_date": null
   }
 },
 {
@@ -768,18 +818,6 @@
 },
 {
   "model": "webapp.task",
-  "pk": 3,
-  "fields": {
-    "status": 1,
-    "title": "RahatIndus",
-    "detailed_description": "Rahat Lukum",
-    "created_at": "2023-07-07T12:30:38.039Z",
-    "updated_at": "2023-07-11T10:24:49.651Z",
-    "project": 1
-  }
-},
-{
-  "model": "webapp.task",
   "pk": 6,
   "fields": {
     "status": 1,
@@ -803,75 +841,11 @@
   }
 },
 {
-  "model": "webapp.task",
-  "pk": 10,
-  "fields": {
-    "status": 2,
-    "title": "gfgfg",
-    "detailed_description": "2",
-    "created_at": "2023-07-11T12:46:26.563Z",
-    "updated_at": "2023-07-11T12:46:26.563Z",
-    "project": null
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 11,
-  "fields": {
-    "status": 2,
-    "title": "Jreck",
-    "detailed_description": "Udalila task, no i vernul ego",
-    "created_at": "2023-07-14T09:55:57.418Z",
-    "updated_at": "2023-07-17T21:54:58.337Z",
-    "project": 2
-  }
-},
-{
-  "model": "webapp.tasktype",
-  "pk": 2,
-  "fields": {
-    "task": 3,
-    "type": 1
-  }
-},
-{
-  "model": "webapp.tasktype",
-  "pk": 3,
-  "fields": {
-    "task": 3,
-    "type": 2
-  }
-},
-{
-  "model": "webapp.tasktype",
-  "pk": 4,
-  "fields": {
-    "task": 3,
-    "type": 3
-  }
-},
-{
   "model": "webapp.tasktype",
   "pk": 9,
   "fields": {
     "task": 9,
     "type": 1
-  }
-},
-{
-  "model": "webapp.tasktype",
-  "pk": 10,
-  "fields": {
-    "task": 10,
-    "type": 2
-  }
-},
-{
-  "model": "webapp.tasktype",
-  "pk": 11,
-  "fields": {
-    "task": 11,
-    "type": 2
   }
 }
 ]
