@@ -25,27 +25,27 @@
                                    style="font-size: 24px;">Старт: {{ project.start_date }}</p>
 
                             </div>
-                                                        <a class="card-link pt-3 pb-3 mx-3 my-3" href="{% url "project_detail_view" project.pk %}"
-                                                           style="border-top: 3px solid darkblue;border-radius: 5%">
-                                                            <button type="submit"
-                                                                    class="btn btm-input btn-outline-warning btn-lg py-2  text-uppercase rounded-0">
-                                                                Заглянуть в проект
-                                                            </button>
-                                                        </a>
-                                                        <a class="card-link pt-3 pb-3" href="{% url "project_update_view" project.pk %}"
-                                                           style="border-top: 3px solid darkblue;border-radius: 10%; background-color: #ce1565">
-                                                            <button type="submit"
-                                                                    class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">
-                                                                Редактирование
-                                                            </button>
-                                                        </a>
-                                                        <a class="card-link pt-3 pb-3" href="{% url "project_delete_view" project.pk %}"
-                                                           style="border-top: 3px solid darkblue;border-radius: 10%; background-color: #ce1565">
-                                                            <button type="submit"
-                                                                    class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">
-                                                                Удаление задачи
-                                                            </button>
-                                                        </a>
+                            <a class="card-link pt-3 pb-3 mx-3 my-3" href="{% url "project_detail_view" project.pk %}"
+                               style="border-top: 3px solid darkblue;border-radius: 5%">
+                                <button type="submit"
+                                        class="btn btm-input btn-outline-warning btn-lg py-2  text-uppercase rounded-0">
+                                    Заглянуть в проект
+                                </button>
+                            </a>
+                            <a class="card-link pt-3 pb-3" href="{% url "project_update_view" project.pk %}"
+                               style="border-top: 3px solid darkblue;border-radius: 10%; background-color: #ce1565">
+                                <button type="submit"
+                                        class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">
+                                    Редактирование
+                                </button>
+                            </a>
+                            <a class="card-link pt-3 pb-3" href="{% url "project_delete_view" project.pk %}"
+                               style="border-top: 3px solid darkblue;border-radius: 10%; background-color: #ce1565">
+                                <button type="submit"
+                                        class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">
+                                    Удаление задачи
+                                </button>
+                            </a>
                         </div>
                     </div>
                 {% endfor %}

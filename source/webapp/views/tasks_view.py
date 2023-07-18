@@ -60,9 +60,6 @@ class ProjectDeleteView(DeleteView):
     template_name = "project/project_delete_view.html"
     success_url = reverse_lazy("index")
 
-    # def get(self, request, *args, **kwargs):
-    #     return self.delete(request, *args, **kwargs)
-
 
 class TaskListView(ListView):
     model = Task
@@ -104,29 +101,6 @@ class TaskListView(ListView):
             return queryset
 
 
-class TaskCreateView(View):
-    def get(self, request, *args, **kwargs):
-        form = TaskForm()
-        return render(request, "tasks/create_task.html", {"form": form})
-
-    def post(self, request, *args, **kwargs):
-        form = TaskForm(data=request.POST)
-        if form.is_valid():
-
-            types = form.cleaned_data.pop("type")
-
-            task = Task.objects.create(title=form.cleaned_data.get("title"),
-                                       detailed_description=form.cleaned_data.get("detailed_description"),
-                                       status=form.cleaned_data.get("status"),
-                                       created_at=form.cleaned_data.get("created_at"),
-                                       updated_at=form.cleaned_data.get("updated_at")
-                                       )
-            task.type.set(types)
-            return redirect("task_view", pk=task.pk)
-        else:
-            return render(request, "tasks/create_task.html", {"form": form})
-
-
 class TaskDetailView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -134,37 +108,23 @@ class TaskDetailView(TemplateView):
         return context
 
     def get_template_names(self):
-        return "tasks/tasks.html"
+        return "tasks/task.html"
 
 
-def task_update_view(request, pk):
-    task = get_object_or_404(Task, id=pk)
-    if request.method == "GET":
-        form = TaskForm(initial={"title": task.title,
-                                 "status": task.status,
-                                 "types": task.type.all(),
-                                 "detailed_description": task.detailed_description,
-                                 })
-        return render(request, "tasks/update_task.html", {"form": form})
-    else:
-        form = TaskForm(data=request.POST)
-        if form.is_valid():
-            types = form.cleaned_data.pop("type")
-            task.title = form.cleaned_data.get("title")
-            task.content = form.cleaned_data.get("detailed_description")
-            task.author = form.cleaned_data.get("author")
-            task.status = form.cleaned_data.get("status")
-            task.save()
-            task.type.set(types)
-            return redirect("task_view", pk=task.pk)
-        else:
-            return render(request, "tasks/update_task.html", {"form": form})
+class TaskCreateView(CreateView):
+    form_class = TaskForm
+    template_name = "tasks/create_task.html"
+    success_url = reverse_lazy("task_view")
 
 
-def task_delete_view(request, pk):
-    task = get_object_or_404(Task, id=pk)
-    if request.method == "GET":
-        return render(request, "tasks/delete_task.html", {"tasks": task})
-    else:
-        task.delete()
-        return redirect("index")
+class TaskUpdateView(UpdateView):
+    model = Task
+    form_class = TaskForm
+    template_name = "tasks/update_task.html"
+    success_url = reverse_lazy("task_view")
+
+
+class ArticleDeleteView(DeleteView):
+    model = Task
+    template_name = "tasks/delete_task.html"
+    success_url = reverse_lazy("index")
