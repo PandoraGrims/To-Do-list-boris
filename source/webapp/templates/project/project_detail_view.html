@@ -1,15 +1,15 @@
 {% extends "base_html_my.html" %}
-{#{% block link %}#}
-{#    <li class="nav-item">#}
-{#        <a class="nav-link" href="{% url "task_add" %}">Создание задачи</a>#}
-{#    </li>#}
-{#    <li class="nav-item">#}
-{#        <a class="nav-link" href="{% url "task_delete_view" task.pk %}">Удалить задачу</a>#}
-{#    </li>#}
-{#    <li class="nav-item">#}
-{#        <a class="nav-link" href="{% url "task_update_view" task.pk %}">Редактировать задачу</a>#}
-{#    </li>#}
-{#{% endblock %}#}
+{% block link %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "project_add" %}">Создание Проекта</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "project_delete_view" task.pk %}">Удалить Проект</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "project_update_view" task.pk %}">Редактировать проект</a>
+    </li>
+{% endblock %}
 
 {% block title %}Детали Проекта{% endblock %}
 
@@ -22,12 +22,6 @@
                     <h1 class="card-title" style="border-bottom: 2px solid darkblue; border-radius: 10px">
                         Название: {{ project.name }}</h1>
                     <p class="card-text" style="font-size: 26px;">Описание: {{ project.description }}</p>
-{#                    {% for type in task.type.all %}#}
-{#                        <p class="card-text card-text-1 text-uppercase"#}
-{#                           style="font-size: 24px;">Тип: {{ type.type_name }}</p>#}
-{#                    {% endfor %}#}
-{#                    <p class="card-text" style="font-size: 26px;">Подробное#}
-{#                        описание: {{ task.detailed_description }}</p>#}
                     <p class="card-text"><small class="text-body-secondary">Старт: {{ project.start_date }}</small>
                     </p>
                     <p class="card-text"><small class="text-body-secondary">Окончание: {{ project.end_date }}</small>
