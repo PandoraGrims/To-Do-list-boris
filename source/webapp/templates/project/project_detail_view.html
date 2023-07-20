@@ -1,7 +1,7 @@
 {% extends "base_html_my.html" %}
 {% block link %}
     <li class="nav-item">
-        <a class="nav-link" href="{% url "project_add" %}">Создание Проекта</a>
+        <a class="nav-link" href="{% url "webapp:project_add" %}">Создание Проекта</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{% url "project_delete_view" project.pk %}">Удалить Проект</a>

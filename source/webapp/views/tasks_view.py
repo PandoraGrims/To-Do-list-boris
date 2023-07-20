@@ -58,7 +58,7 @@ class ProjectUpdateView(UpdateView):
 class ProjectDeleteView(DeleteView):
     model = Project
     template_name = "project/project_delete_view.html"
-    success_url = reverse_lazy("index")
+    success_url = reverse_lazy("webapp:index")
 
 
 class TaskDetailView(DetailView):
@@ -96,4 +96,4 @@ class TaskUpdateView(UpdateView):
 class TaskDeleteView(DeleteView):
     model = Task
     template_name = "tasks/delete_task.html"
-    success_url = reverse_lazy("index")
+    success_url = reverse_lazy("webapp:index")
