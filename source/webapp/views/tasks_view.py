@@ -72,6 +72,17 @@ class TaskCreateView(CreateView):
     template_name = "tasks/create_task.html"
     success_url = reverse_lazy("task_view")
 
+    def get_success_url(self):
+        return reverse("task_view", kwargs={"pk": self.object.pk})
+
+    def form_valid(self, form):
+        project = get_object_or_404(Project, pk=self.kwargs.get("pk"))
+        task = form.save(commit=False)
+        task.project = project
+        task.save()
+        # form.save_m2m()
+        return redirect("project_detail_view", pk=project.pk)
+
 
 class TaskUpdateView(UpdateView):
     model = Task
