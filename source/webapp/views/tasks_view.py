@@ -61,51 +61,10 @@ class ProjectDeleteView(DeleteView):
     success_url = reverse_lazy("index")
 
 
-class TaskListView(ListView):
-    model = Task
-    template_name = "tasks/index.html"
-    context_object_name = "tasks"
-    ordering = ("-updated_at",)
-    paginate_by = 3
-
-    def dispatch(self, request, *args, **kwargs):
-        self.form = self.get_search_form()
-        self.search_value = self.get_search_value()
-        return super().dispatch(request, *args, **kwargs)
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(object_list=None, **kwargs)
-        context["form"] = self.form
-        if self.search_value:
-            context["query"] = urlencode({'search': self.search_value})
-            context["search_value"] = self.search_value
-        return context
-
-    def get_search_form(self):
-        return SearchForm(self.request.GET)
-
-    def get_search_value(self):
-        if self.form.is_valid():
-            return self.form.cleaned_data['search']
-        return None
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        print(self.search_value)
-        if self.search_value:
-            queryset = queryset.filter(Q(title__icontains=self.search_value) |
-                                       Q(detailed_description__icontains=self.search_value))
-
-            return queryset
-        else:
-            return queryset
-
-
 class TaskDetailView(DetailView):
     model = Task
     template_name = 'tasks/task.html'
     context_object_name = 'task'
-
 
 
 class TaskCreateView(CreateView):
@@ -124,7 +83,7 @@ class TaskUpdateView(UpdateView):
         return reverse("task_view", kwargs={"pk": self.object.pk})
 
 
-class ArticleDeleteView(DeleteView):
+class TaskDeleteView(DeleteView):
     model = Task
     template_name = "tasks/delete_task.html"
     success_url = reverse_lazy("index")
