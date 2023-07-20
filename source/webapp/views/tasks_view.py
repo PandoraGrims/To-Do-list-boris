@@ -43,7 +43,7 @@ class ProjectCreateView(CreateView):
     template_name = "project/project_create_view.html"
 
     def get_success_url(self):
-        return reverse("project_detail_view", kwargs={"pk": self.object.pk})
+        return reverse("webapp:project_detail_view", kwargs={"pk": self.object.pk})
 
 
 class ProjectUpdateView(UpdateView):
@@ -52,7 +52,7 @@ class ProjectUpdateView(UpdateView):
     template_name = "project/project_update_view.html"
 
     def get_success_url(self):
-        return reverse("project_detail_view", kwargs={"pk": self.object.pk})
+        return reverse("webapp:project_detail_view", kwargs={"pk": self.object.pk})
 
 
 class ProjectDeleteView(DeleteView):
@@ -80,7 +80,7 @@ class TaskCreateView(CreateView):
         task = form.save(commit=False)
         task.project = project
         task.save()
-        return redirect("project_detail_view", pk=project.pk)
+        return redirect("webapp:project_detail_view", pk=project.pk)
 
 
 class TaskUpdateView(UpdateView):

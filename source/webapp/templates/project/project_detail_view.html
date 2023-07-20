@@ -7,7 +7,7 @@
         <a class="nav-link" href="{% url "project_delete_view" project.pk %}">Удалить Проект</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{% url "project_update_view" project.pk %}">Редактировать проект</a>
+        <a class="nav-link" href="{% url "webapp:project_update_view" project.pk %}">Редактировать проект</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{% url "task_add" project.pk %}">Добавить задачу</a>
@@ -29,7 +29,7 @@
                     </p>
                     <p class="card-text"><small class="text-body-secondary">Окончание: {{ project.end_date }}</small>
                     </p>
-                    <a class="card-link pt-3 pt-4 pb-3" href="{% url "project_update_view" project.pk %}"
+                    <a class="card-link pt-3 pt-4 pb-3" href="{% url "webapp:project_detail_view" project.pk %}"
                        style="border-top: 3px solid darkblue;border-radius: 5%">
                         <button type="submit"
                                 class="btn btm-input btn-outline-warning btn-lg py-2  text-uppercase rounded-0">
