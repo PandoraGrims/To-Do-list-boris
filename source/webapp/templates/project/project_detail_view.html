@@ -4,13 +4,13 @@
         <a class="nav-link" href="{% url "webapp:project_add" %}">Создание Проекта</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{% url "project_delete_view" project.pk %}">Удалить Проект</a>
+        <a class="nav-link" href="{% url "webapp:project_delete_view" project.pk %}">Удалить Проект</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{% url "webapp:project_update_view" project.pk %}">Редактировать проект</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{% url "task_add" project.pk %}">Добавить задачу</a>
+        <a class="nav-link" href="{% url "webapp:task_add" project.pk %}">Добавить задачу</a>
     </li>
 {% endblock %}
 
@@ -69,21 +69,21 @@
                                 <p class="card-text card-text-1 text-uppercase"
                                    style="font-size: 24px; border-top: 3px solid darkblue; border-radius: 10%;">{{ task.created_at }}</p>
                             </div>
-                            <a class="card-link pt-3 pb-3" href="{% url "task_view" task.pk %}"
+                            <a class="card-link pt-3 pb-3" href="{% url "webapp:task_view" task.pk %}"
                                style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">
                                 <button type="submit"
                                         class="btn btm-input btn-outline-warning btn-lg py-2  text-uppercase rounded-0">
                                     Детальный просмотр задачи
                                 </button>
                             </a>
-                            <a class="card-link pt-3 pb-3" href="{% url "task_update_view" task.pk %}"
+                            <a class="card-link pt-3 pb-3" href="{% url "webapp:task_update_view" task.pk %}"
                                style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">
                                 <button type="submit"
                                         class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">
                                     Редактирование
                                 </button>
                             </a>
-                            <a class="card-link pt-3 pb-3" href="{% url "task_delete_view" task.pk %}"
+                            <a class="card-link pt-3 pb-3" href="{% url "webapp:task_delete_view" task.pk %}"
                                style="border-top: 3px solid darkblue;border-radius: 10%; background-color: darkcyan">
                                 <button type="submit"
                                         class="btn btm-input btn-outline-warning btn-md py-2  text-uppercase rounded-0">

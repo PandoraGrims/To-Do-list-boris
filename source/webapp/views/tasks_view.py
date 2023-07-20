@@ -70,10 +70,10 @@ class TaskDetailView(DetailView):
 class TaskCreateView(CreateView):
     form_class = TaskForm
     template_name = "tasks/create_task.html"
-    success_url = reverse_lazy("task_view")
+    success_url = reverse_lazy("webapp:task_view")
 
     def get_success_url(self):
-        return reverse("task_view", kwargs={"pk": self.object.pk})
+        return reverse("webapp:task_view", kwargs={"pk": self.object.pk})
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get("pk"))
@@ -87,10 +87,10 @@ class TaskUpdateView(UpdateView):
     model = Task
     form_class = TaskForm
     template_name = "tasks/update_task.html"
-    success_url = reverse_lazy("task_view")
+    success_url = reverse_lazy("webapp:task_view")
 
     def get_success_url(self):
-        return reverse("task_view", kwargs={"pk": self.object.pk})
+        return reverse("webapp:task_view", kwargs={"pk": self.object.pk})
 
 
 class TaskDeleteView(DeleteView):
