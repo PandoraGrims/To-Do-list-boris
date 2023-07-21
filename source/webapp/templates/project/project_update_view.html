@@ -1,8 +1,10 @@
 {% extends "base_html_my.html" %}
 {% block link %}
+    {% if request.user.is_authenticated %}
     <li class="nav-item">
         <a class="nav-link" href="{% url "webapp:project_add" %}">Создание проекта</a>
     </li>
+    {% endif %}
 {% endblock %}
 {% block title %}Редактирование задачи{% endblock %}
 

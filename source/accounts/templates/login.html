@@ -1,7 +1,7 @@
 {% extends "base_html_my.html" %}
 {% block content %}
     <h1 class="h1_down_head py-5" style="text-align: center">Вход</h1>
-    <form action="{% url 'accounts:login' %}" method="post" class="text-center w-50 ms-auto me-auto">
+    <form action="" method="post" class="text-center w-50 ms-auto me-auto">
         {% csrf_token %}
         {% if has_error %}
             <p class="text-danger">Неверное имя пользователя или пароль.</p>
