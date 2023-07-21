@@ -16,12 +16,35 @@ class ProjectListView(ListView):
     ordering = ("-start_date",)
     paginate_by = 5
 
+    def dispatch(self, request, *args, **kwargs):
+        self.form = self.get_search_form()
+        self.search_value = self.get_search_value()
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=None, **kwargs)
+        context["form"] = self.form
+        if self.search_value:
+            context["query"] = urlencode({'search': self.search_value})
+            context["search_value"] = self.search_value
+        return context
+
+    def get_search_form(self):
+        return SearchForm(self.request.GET)
+
+    def get_search_value(self):
+        if self.form.is_valid():
+            return self.form.cleaned_data['search']
+        return None
+
+
     def get_queryset(self):
         queryset = super().get_queryset()
         search_value = self.request.GET.get('search')
         if search_value:
             queryset = queryset.filter(Q(name__icontains=search_value) | Q(description__icontains=search_value))
         return queryset
+
 
 
 class ProjectDetailView(DetailView):
