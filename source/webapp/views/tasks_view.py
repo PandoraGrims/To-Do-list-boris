@@ -68,7 +68,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
         return reverse("webapp:project_detail_view", kwargs={"pk": self.object.pk})
 
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     model = Project
     form_class = ProjectForm
     template_name = "project/project_update_view.html"
@@ -77,7 +77,7 @@ class ProjectUpdateView(UpdateView):
         return reverse("webapp:project_detail_view", kwargs={"pk": self.object.pk})
 
 
-class ProjectDeleteView(DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model = Project
     template_name = "project/project_delete_view.html"
     success_url = reverse_lazy("webapp:index")
@@ -89,7 +89,7 @@ class TaskDetailView(DetailView):
     context_object_name = 'task'
 
 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
     form_class = TaskForm
     template_name = "tasks/create_task.html"
     success_url = reverse_lazy("webapp:task_view")
@@ -105,7 +105,7 @@ class TaskCreateView(CreateView):
         return redirect("webapp:project_detail_view", pk=project.pk)
 
 
-class TaskUpdateView(UpdateView):
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskForm
     template_name = "tasks/update_task.html"
@@ -115,7 +115,7 @@ class TaskUpdateView(UpdateView):
         return reverse("webapp:task_view", kwargs={"pk": self.object.pk})
 
 
-class TaskDeleteView(DeleteView):
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     template_name = "tasks/delete_task.html"
     success_url = reverse_lazy("webapp:index")
