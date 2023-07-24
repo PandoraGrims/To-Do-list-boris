@@ -29,23 +29,22 @@
                 <ul class="navbar-nav w-100  navbar-nav-header text-uppercase ">
                     {% block link %}
                     {% endblock %}
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "accounts:logout" %}">Выход</a>
+                        </li>
+                        <li class="nav-item" style="color: aliceblue">
+                            <p>Здравствуйте {{ request.user.username }}</p>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Регистрация</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "accounts:login" %}?next={{ request.path }}">Вход</a>
+                        </li>
+                    {% endif %}
                 </ul>
-            </div>
-            <div class=" w-25 ms-auto align-self-between flex-grow-1">
-                {% if request.user.is_authenticated %}
-                    <ul>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url "accounts:logout" %}">Выход</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Регистрация</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url "accounts:login" %}">Вход</a>
-                    </li>
-                {% endif %}
-                </ul>>
             </div>
         </div>
     </nav>
