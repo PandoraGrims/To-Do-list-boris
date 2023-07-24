@@ -1,19 +1,19 @@
 {% extends "base_html_my.html" %}
 {% block content %}
-    <h1 class="h1_down_head py-5" style="text-align: center">Вход</h1>
-    <form action="" method="post" class="text-center w-50 ms-auto me-auto">
+    <h1 class="h1_down_head py-5" style="text-align: center; font-size: 90px">Вход</h1>
+    <form action="" method="post" class="text-center w-50 ms-auto me-auto" style="font-size: 35px">
         {% csrf_token %}
         {% if has_error %}
             <p class="text-danger">Неверное имя пользователя или пароль.</p>
         {% endif %}
         <div class="form-group">
             <label for="username" class="form-label">Имя пользователя:</label>
-            <input class="form-control" type="text" name="username" id="username">
+            <input class="form-control" style="height: 70px; font-size: 60px" type="text" name="username" id="username">
         </div>
         <div class="form-group">
             <label for="password" class="form-label">Пароль:</label>
-            <input class="form-control" type="password" name="password" id="password">
+            <input class="form-control" style="height: 70px; font-size: 60px" type="password" name="password" id="password">
         </div>
-        <button class="btn btn-outline-dark mt-3" type="submit">Войти</button>
+        <button class="btn btn-outline-dark mt-3" type="submit" style="font-size: 40px; width: 500px">Войти</button>
     </form>
 {% endblock %}

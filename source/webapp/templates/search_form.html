@@ -1,7 +1,7 @@
-<form class="text-center" action="" method="GET">
+<form class="text-center" action="" method="GET" style="font-size: 30px; font-family: 'Lucida Grande', Arial, sans-serif">
     <label for="{{ form.search.id_for_label }}">{{ form.search.label }}:</label>
     {{ form.search }}
-    <input type="submit" value="Поиск">
+    <input type="submit" value="Поиск" style="color: brown; border-radius: 10px; width: 200px">
     {% for error in form.search.errors %}
         <p class="form-error">{{ error }}</p>
     {% endfor %}
