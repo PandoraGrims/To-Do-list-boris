@@ -1,11 +1,24 @@
 from django.db import models
 
 
+class User(models.Model):
+    user_name = models.CharField(max_length=50, null=False, blank=False, verbose_name='Юзер')
+
+    def __str__(self):
+        return self.user_name
+
+    class Meta:
+        db_table = "users"
+        verbose_name = "Юзер"
+        verbose_name_plural = "Юзеры"
+
+
 class Project(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название')
     description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Описание')
     start_date = models.DateField(null=False, blank=False, verbose_name='Дата начала')
     end_date = models.DateField(null=True, blank=True, verbose_name='Дата окончания')
+    # user = models.ManyToManyField('webapp.User', related_name='users', blank=True)
 
     def __str__(self):
         return self.name

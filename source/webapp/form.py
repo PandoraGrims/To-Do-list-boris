@@ -2,7 +2,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import widgets
 
-from webapp.models import Type, Status, Task, Project
+from webapp.models import Type, Status, Task, Project, User
+from django.contrib.auth.models import User
 
 
 def validate_title(value):
@@ -21,6 +22,17 @@ class TypeForm(forms.Form):
 
 class StatusForm(forms.Form):
     status_name = forms.CharField(max_length=50, required=True, label="Тип")
+
+
+class UserForm(forms.Form):
+    user_name = forms.CharField(max_length=50, required=True, label="Юзер")
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        user_exists = User.objects.filter(username=username).exists()
+        if not user_exists:
+            raise forms.ValidationError('Пользователь с таким именем не существует.')
+        return username
 
 
 class TaskForm(forms.ModelForm):

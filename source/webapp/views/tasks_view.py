@@ -3,9 +3,9 @@ from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.utils.html import urlencode
-from webapp.form import TaskForm, SearchForm, ProjectForm
+from webapp.form import TaskForm, SearchForm, ProjectForm, UserForm
 from webapp.models import Task, Project
-
+from django.contrib.auth.models import User
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -119,3 +119,32 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     template_name = "tasks/delete_task.html"
     success_url = reverse_lazy("webapp:index")
+
+
+class AddUserToProjectView(View):
+    def get(self, request, pk):
+        project = get_object_or_404(Project, pk=pk)
+        form = UserForm()
+        return render(request, 'user/add_user_to_project.html', {'project': project, 'form': form})
+
+    def post(self, request, pk):
+        project = get_object_or_404(Project, pk=pk)
+        form = UserForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            user = get_object_or_404(User, username=username)
+            project.user.add(user)
+            return redirect('project_detail', pk=pk)
+        return render(request, 'user/add_user_to_project.html', {'project': project, 'form': form})
+
+# class RemoveUserFromProjectView(View):
+#     def get(self, request, pk, user_pk):
+#         project = get_object_or_404(Project, pk=pk)
+#         user = get_object_or_404(User, pk=user_pk)
+#         return render(request, 'project/remove_user_from_project.html', {'project': project, 'user': user})
+#
+#     def post(self, request, pk, user_pk):
+#         project = get_object_or_404(Project, pk=pk)
+#         user = get_object_or_404(User, pk=user_pk)
+#         project.members.remove(user)
+#         return redirect('project_detail', pk=pk)
