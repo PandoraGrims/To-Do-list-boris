@@ -1,6 +1,20 @@
 <form action='' method="post">
     {% csrf_token %}
     {{ form.as_p }}
+
+    {% for error in form.non_field_errors %}
+        <p class="form-error">{{ error }}</p>
+    {% endfor %}
+
+
+    {% for field in form %}
+        <p><label for="{{ field.id_for_label }}">{{ field.label }}</label></p>
+        {% for error in field.errors %}
+            <p class="form-error">{{ error }}</p>
+        {% endfor %}
+        <p>{{ field }}</p>
+    {% endfor %}
+
     </label><br/>
     <input type="submit" value="{{ button_text }}"
            style="font-size: 30px; width: 300px; background-color: darkmagenta; border: 2px solid olivedrab"/>
