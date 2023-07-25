@@ -38,9 +38,10 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Регистрация</a>
+                            <a class="nav-link"
+                               href="{% url "accounts:register" %}?next={{ request.path }}">Регистрация</a>
                         </li>
-                        <li class="nav-item">
+                        <li class=" nav-item">
                             <a class="nav-link" href="{% url "accounts:login" %}?next={{ request.path }}">Вход</a>
                         </li>
                     {% endif %}
