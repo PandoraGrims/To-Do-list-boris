@@ -30,9 +30,9 @@ class UserForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data['username']
         user_exists = User.objects.filter(username=username).exists()
-        if not user_exists:
-            raise forms.ValidationError('Пользователь с таким именем не существует.')
-        return username
+        # if not user_exists:
+        #     raise forms.ValidationError('Пользователь с таким именем не существует.')
+        # return username
 
 
 class TaskForm(forms.ModelForm):

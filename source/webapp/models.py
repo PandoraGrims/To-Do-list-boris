@@ -1,16 +1,5 @@
 from django.db import models
-
-
-class User(models.Model):
-    user_name = models.CharField(max_length=50, null=False, blank=False, verbose_name='Юзер')
-
-    def __str__(self):
-        return self.user_name
-
-    class Meta:
-        db_table = "users"
-        verbose_name = "Юзер"
-        verbose_name_plural = "Юзеры"
+from django.contrib.auth.models import User
 
 
 class Project(models.Model):
@@ -18,7 +7,7 @@ class Project(models.Model):
     description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Описание')
     start_date = models.DateField(null=False, blank=False, verbose_name='Дата начала')
     end_date = models.DateField(null=True, blank=True, verbose_name='Дата окончания')
-    # user = models.ManyToManyField('webapp.User', related_name='users', blank=True)
+    user = models.ManyToManyField(User, related_name='projects', verbose_name='Юзер', blank=True)
 
     def __str__(self):
         return self.name
